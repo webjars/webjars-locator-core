@@ -1,3 +1,4 @@
 #org.webjars.urlprotocols.FatJarUrlProtocolHandler
 org.webjars.urlprotocols.JarUrlProtocolHandler
 org.webjars.urlprotocols.FileUrlProtocolHandler
+org.webjars.urlprotocols.BundleUrlProtocolHandler

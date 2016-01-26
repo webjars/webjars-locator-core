@@ -83,7 +83,7 @@ public class WebJarAssetLocator {
         final Set<String> assetPaths = new HashSet<String>();
         final Set<URL> urls = listParentURLsWithResource(classLoaders, WEBJARS_PATH_PREFIX);
 
-        ServiceLoader<UrlProtocolHandler> urlProtocolHandlers = ServiceLoader.load(UrlProtocolHandler.class);
+        ServiceLoader<UrlProtocolHandler> urlProtocolHandlers = ServiceLoader.load(UrlProtocolHandler.class,new ClassLoaderList ( classLoaders ) );
 
         for (final URL url : urls) {
             for (UrlProtocolHandler urlProtocolHandler : urlProtocolHandlers) {
@@ -138,7 +138,7 @@ public class WebJarAssetLocator {
             reversedAssetPath.append(assetPathComponents[i]);
             reversedAssetPath.append('/');
         }
-        
+
         return reversedAssetPath.toString();
     }
 
@@ -153,6 +153,10 @@ public class WebJarAssetLocator {
                 WebJarAssetLocator.class.getClassLoader()));
     }
 
+    public WebJarAssetLocator ( ClassLoader locator ) {
+        this ( getFullPathIndex ( Pattern.compile ( ".*" ), locator ) );
+    }
+
     /**
      * Establish a locator given an index that it should use.
      *
@@ -164,7 +168,7 @@ public class WebJarAssetLocator {
 
     public WebJarAssetLocator(Set<String> assetPaths) {
         this.fullPathIndex = new TreeMap<String, String>();
-        
+
         for (String assetPath : assetPaths) {
             fullPathIndex.put(reversePath(assetPath), assetPath);
         }
@@ -222,7 +226,7 @@ public class WebJarAssetLocator {
         if (partialPath.charAt(0) == '/') {
             partialPath = partialPath.substring(1);
         }
-        
+
         final String reversePartialPath = reversePath(partialPath);
 
         final SortedMap<String, String> fullPathTail = pathIndex.tailMap(reversePartialPath);
@@ -284,7 +288,7 @@ public class WebJarAssetLocator {
     public Set<String> listAssets() {
         return listAssets("");
     }
-    
+
     /**
      * List assets within a folder.
      *
