@@ -93,21 +93,21 @@ public class ClassLoaderList extends ClassLoader {
 
     @Override
     public void setDefaultAssertionStatus ( boolean enabled ) {
-        super.setDefaultAssertionStatus ( enabled );
+        throw new UnsupportedOperationException ();
     }
 
     @Override
     public void setPackageAssertionStatus ( String packageName, boolean enabled ) {
-        super.setPackageAssertionStatus ( packageName, enabled );
+        throw new UnsupportedOperationException ();
     }
 
     @Override
     public void setClassAssertionStatus ( String className, boolean enabled ) {
-        super.setClassAssertionStatus ( className, enabled );
+        throw new UnsupportedOperationException ();
     }
 
     @Override
     public void clearAssertionStatus () {
-        super.clearAssertionStatus ();
+        throw new UnsupportedOperationException ();
     }
 }
