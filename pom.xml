@@ -227,6 +227,7 @@
                             cardinality:=multiple</Require-Capability>
                         <Provide-Capability>osgi.serviceloader;
                         osgi.serviceloader=org.webjars.urlprotocols.UrlProtocolHandler</Provide-Capability>
+                        <Bundle-Activator>org.webjars.BundleActivator</Bundle-Activator>
                     </instructions>
                 </configuration>
             </plugin>
