@@ -83,15 +83,20 @@ public class WebJarAssetLocator {
         final Set<String> assetPaths = new HashSet<String>();
         final Set<URL> urls = listParentURLsWithResource(classLoaders, WEBJARS_PATH_PREFIX);
 
-        ServiceLoader<UrlProtocolHandler> urlProtocolHandlers = ServiceLoader.load(UrlProtocolHandler.class);
+        List<ServiceLoader<UrlProtocolHandler>> serviceLoaders = new ArrayList<>();
+        for (ClassLoader cl : classLoaders) {
+            serviceLoaders.add(ServiceLoader.load(UrlProtocolHandler.class, cl));
+        }
 
         for (final URL url : urls) {
-            for (UrlProtocolHandler urlProtocolHandler : urlProtocolHandlers) {
-                if (urlProtocolHandler.accepts(url.getProtocol())) {
-                    Set<String> assetPathSet = urlProtocolHandler.getAssetPaths(url, filterExpr, classLoaders);
-                    if(assetPathSet != null) {
-                        assetPaths.addAll(assetPathSet);
-                        break;
+            for (ServiceLoader<UrlProtocolHandler> urlProtocolHandlers : serviceLoaders) {
+                for (UrlProtocolHandler urlProtocolHandler : urlProtocolHandlers) {
+                    if (urlProtocolHandler.accepts(url.getProtocol())) {
+                        Set<String> assetPathSet = urlProtocolHandler.getAssetPaths(url, filterExpr, classLoaders);
+                        if (assetPathSet != null) {
+                            assetPaths.addAll(assetPathSet);
+                            break;
+                        }
                     }
                 }
             }
