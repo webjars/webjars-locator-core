@@ -105,7 +105,7 @@ public class WebJarAssetLocatorTest {
 
     @Test
     public void should_work_with_classpath_containing_spaces() throws java.net.MalformedURLException, NoSuchMethodException, IllegalAccessException, java.lang.reflect.InvocationTargetException {
-        WebJarAssetLocator locator = buildAssetLocatorWithPath(new File("src/test/resources/space space").toURL());
+        WebJarAssetLocator locator = buildAssetLocatorWithPath(new File("src/test/resources/space space").toURI().toURL());
         String path = locator.getFullPath("spaces/2.0.0/spaces.js");
         assertEquals(path, "META-INF/resources/webjars/spaces/2.0.0/spaces.js");
     }
@@ -209,7 +209,7 @@ public class WebJarAssetLocatorTest {
     public void should_get_a_list_of_webjars() {
         Map<String, String> webjars = new WebJarAssetLocator().getWebJars();
 
-        assertEquals(webjars.size(), 16); // this is the pom.xml ones plus the test resources (spaces, foo, bar-node, multiple)
+        assertEquals(webjars.size(), 18); // this is the pom.xml ones plus the test resources (spaces, foo, bar-node, multiple)
         assertEquals(webjars.get("bootstrap"), "3.1.1");
         assertEquals(webjars.get("less-node"), "1.6.0");
         assertEquals(webjars.get("jquery"), "2.1.0");

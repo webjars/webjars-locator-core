@@ -26,7 +26,7 @@ public class WebJarExtractorTestUtils {
                 File file = new File(url.getPath());
                 // go up from META-INF/resources/webjars
                 File base = file.getParentFile().getParentFile().getParentFile();
-                webjarUrls.add(base.toURL());
+                webjarUrls.add(base.toURI().toURL());
             }
         }
 

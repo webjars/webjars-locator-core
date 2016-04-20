@@ -1,5 +1,6 @@
 package org.webjars;
 
+import org.apache.commons.compress.utils.IOUtils;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -168,6 +169,18 @@ public class WebJarExtractorTest {
         WebJarExtractor extractor = new WebJarExtractor(createClassLoader());
         extractor.extractAllWebJarsTo(createTmpDir());
         assertFileExists(new File(tmpDir, "select2/select2.js"));
+    }
+
+    @Test
+    public void getJsonNodeModuleIdShouldGetTheRightName() throws Exception {
+        ClassLoader classLoader = createClassLoader();
+        WebJarExtractor extractor = new WebJarExtractor(classLoader);
+        String utilPackageJsonPath = WEBJARS_PATH_PREFIX + "/util/0.10.3/package.json";
+        InputStream utilPackageJsonInputStream = classLoader.getResourceAsStream(utilPackageJsonPath);
+        String utilPackageJson = new String(IOUtils.toByteArray(utilPackageJsonInputStream));
+        utilPackageJsonInputStream.close();
+        String moduleId = extractor.getJsonNodeModuleId(utilPackageJson);
+        assertEquals("util", moduleId);
     }
 
     private URLClassLoader createClassLoader() throws Exception {

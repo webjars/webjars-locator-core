@@ -1,5 +1,8 @@
 package org.webjars;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 import org.apache.commons.lang3.SystemUtils;
@@ -15,6 +18,8 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.*;
 
+import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_SINGLE_QUOTES;
+import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES;
 import static org.webjars.CloseQuietly.closeQuietly;
 import static org.webjars.WebJarAssetLocator.WEBJARS_PATH_PREFIX;
 
@@ -320,28 +325,14 @@ public class WebJarExtractor {
         return moduleId;
     }
 
-    private String getJsonNodeModuleId(String packageJson) {
-        String moduleId = null;
-        int namePosn = packageJson.indexOf(PACKAGE_JSON_NAME);
-        if (namePosn > -1) {
-            int moduleIdPosn = namePosn + PACKAGE_JSON_NAME.length();
-            while (moduleIdPosn < packageJson.length() && Character.isWhitespace(packageJson.charAt(moduleIdPosn)))
-                ++moduleIdPosn;
-            if (moduleIdPosn < packageJson.length() && packageJson.charAt(moduleIdPosn) == ':') {
-                ++moduleIdPosn;
-                while (moduleIdPosn < packageJson.length() && Character.isWhitespace(packageJson.charAt(moduleIdPosn)))
-                    ++moduleIdPosn;
-                if (moduleIdPosn < packageJson.length() && packageJson.charAt(moduleIdPosn) == '"') {
-                    ++moduleIdPosn;
-                    StringBuilder sb = new StringBuilder();
-                    while (moduleIdPosn < packageJson.length() && packageJson.charAt(moduleIdPosn) != '"') {
-                        sb.append(packageJson.charAt(moduleIdPosn++));
-                    }
-                    moduleId = sb.toString();
-                }
-            }
-        }
-        return moduleId;
+    String getJsonNodeModuleId(String packageJson) throws IOException {
+        ObjectMapper mapper = new ObjectMapper()
+                .configure(ALLOW_UNQUOTED_FIELD_NAMES, true)
+                .configure(ALLOW_SINGLE_QUOTES, true);
+
+        JsonNode jsonNode = mapper.readTree(packageJson);
+
+        return jsonNode.get("name").asText();
     }
 
     /**

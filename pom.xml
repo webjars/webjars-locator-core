@@ -60,6 +60,11 @@
             <version>1.9</version>
         </dependency>
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+        <dependency>
               <groupId>org.slf4j</groupId>
               <artifactId>slf4j-simple</artifactId>
               <version>1.7.7</version>
@@ -154,6 +159,12 @@
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>util</artifactId>
+            <version>0.10.3</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
           <groupId>org.springframework.boot</groupId>
