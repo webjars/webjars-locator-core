@@ -18,8 +18,6 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.*;
 
-import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_SINGLE_QUOTES;
-import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES;
 import static org.webjars.CloseQuietly.closeQuietly;
 import static org.webjars.WebJarAssetLocator.WEBJARS_PATH_PREFIX;
 
