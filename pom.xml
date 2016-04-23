@@ -8,7 +8,7 @@
         <version>7</version>
     </parent>
 
-    <packaging>jar</packaging>
+    <packaging>bundle</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>webjars-locator-core</artifactId>
     <version>0.32-SNAPSHOT</version>
@@ -184,6 +184,13 @@
           <version>1.3</version>
           <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>5.0.0</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
@@ -213,6 +220,26 @@
                     <serverId>sonatype-nexus-staging</serverId>
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>3.0.1</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Require-Capability>osgi.extender;filter:="(osgi.extender=osgi.serviceloader.registrar)",
+                            osgi.extender;
+                            filter:="(osgi.extender=osgi.serviceloader.processor)",
+                            osgi.serviceloader;
+                            filter:="(osgi.serviceloader=org.webjars.urlprotocols.UrlProtocolHandler)";
+                            cardinality:=multiple</Require-Capability>
+                        <Provide-Capability>osgi.serviceloader;
+                        osgi.serviceloader=org.webjars.urlprotocols.UrlProtocolHandler</Provide-Capability>
+                        <Bundle-Activator>org.webjars.BundleActivator</Bundle-Activator>
+                    </instructions>
                 </configuration>
             </plugin>
         </plugins>
