@@ -134,7 +134,7 @@ public class WebJarAssetLocatorTest {
             assertThat(e.getMatches(), contains("META-INF/resources/webjars/multiple/2.0.0/multiple.js", "META-INF/resources/webjars/multiple/1.0.0/multiple.js"));
         }
     }
-    
+
     @Test
     public void should_throw_exceptions_when_all_assets_match() throws Exception {
         try {
@@ -199,7 +199,7 @@ public class WebJarAssetLocatorTest {
         assertEquals(webjar.getKey(), "foo");
         assertEquals(webjar.getValue(), "1.0.0");
     }
-    
+
     @Test
     public void invalid_webjar_path_should_return_null() {
         assertNull(WebJarAssetLocator.getWebJar("foo/1.0.0/asdf.js"));
@@ -209,7 +209,7 @@ public class WebJarAssetLocatorTest {
     public void should_get_a_list_of_webjars() {
         Map<String, String> webjars = new WebJarAssetLocator().getWebJars();
 
-        assertEquals(webjars.size(), 18); // this is the pom.xml ones plus the test resources (spaces, foo, bar-node, multiple)
+        assertEquals(webjars.size(), 20); // this is the pom.xml ones plus the test resources (spaces, foo, bar-node, multiple)
         assertEquals(webjars.get("bootstrap"), "3.1.1");
         assertEquals(webjars.get("less-node"), "1.6.0");
         assertEquals(webjars.get("jquery"), "2.1.0");
@@ -219,7 +219,7 @@ public class WebJarAssetLocatorTest {
     @Test
     public void should_match_when_full_path_given() throws Exception {
         WebJarAssetLocator locator = new WebJarAssetLocator();
-        
+
         assertEquals("META-INF/resources/webjars/bootstrap/3.1.1/less/.csscomb.json", locator.getFullPath("META-INF/resources/webjars/bootstrap/3.1.1/less/.csscomb.json"));
     }
 

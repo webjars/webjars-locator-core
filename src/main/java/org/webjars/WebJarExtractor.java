@@ -335,17 +335,9 @@ public class WebJarExtractor {
         while (moduleId == null) {
             parser.nextToken(); // name
             String fieldName = parser.getCurrentName();
-            parser.nextToken(); // value
 
-            // skip tokens whose parents are not the root
-            if (!parser.getParsingContext().getParent().inRoot()) {
-                while (parser.nextToken() != JsonToken.END_OBJECT) {
-                    parser.nextToken();
-                }
-                continue;
-            }
-
-            if (fieldName.equals("name")) {
+            if ("name".equals(fieldName) && parser.getParsingContext().getParent().inRoot()) {
+                parser.nextToken(); // value
                 moduleId = parser.getText();
             }
         }

@@ -8,12 +8,10 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.*;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.webjars.WebJarExtractor.*;
 
@@ -172,7 +170,7 @@ public class WebJarExtractorTest {
     }
 
     @Test
-    public void getJsonNodeModuleIdShouldGetTheRightName() throws Exception {
+    public void getJsonNodeModuleIdShouldGetTheRightNameForUtil() throws Exception {
         ClassLoader classLoader = createClassLoader();
         WebJarExtractor extractor = new WebJarExtractor(classLoader);
         String utilPackageJsonPath = WEBJARS_PATH_PREFIX + "/util/0.10.3/package.json";
@@ -181,6 +179,18 @@ public class WebJarExtractorTest {
         utilPackageJsonInputStream.close();
         String moduleId = extractor.getJsonNodeModuleId(utilPackageJson);
         assertEquals("util", moduleId);
+    }
+
+    @Test
+    public void getJsonNodeModuleIdShouldGetTheRightNameForRxjs() throws Exception {
+        ClassLoader classLoader = createClassLoader();
+        WebJarExtractor extractor = new WebJarExtractor(classLoader);
+        String packageJsonPath = WEBJARS_PATH_PREFIX + "/rxjs/5.0.0-beta.12/package.json";
+        InputStream packageJsonInputStream = classLoader.getResourceAsStream(packageJsonPath);
+        String packageJson = new String(IOUtils.toByteArray(packageJsonInputStream));
+        packageJsonInputStream.close();
+        String moduleId = extractor.getJsonNodeModuleId(packageJson);
+        assertEquals("rxjs", moduleId);
     }
 
     private URLClassLoader createClassLoader() throws Exception {
