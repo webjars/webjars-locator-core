@@ -83,7 +83,7 @@ public class WebJarAssetLocator {
         final Set<String> assetPaths = new HashSet<String>();
         final Set<URL> urls = listParentURLsWithResource(classLoaders, WEBJARS_PATH_PREFIX);
 
-        ServiceLoader<UrlProtocolHandler> urlProtocolHandlers = ServiceLoader.load(UrlProtocolHandler.class);
+        ServiceLoader<UrlProtocolHandler> urlProtocolHandlers = ServiceLoader.load(UrlProtocolHandler.class, WebJarAssetLocator.class.getClassLoader());
 
         for (final URL url : urls) {
             for (UrlProtocolHandler urlProtocolHandler : urlProtocolHandlers) {
