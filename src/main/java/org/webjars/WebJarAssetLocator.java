@@ -270,7 +270,7 @@ public class WebJarAssetLocator {
         SortedMap<String, String> filteredPathIndex = new TreeMap<String, String>();
         for (String key : pathIndex.keySet()) {
             String value = pathIndex.get(key);
-            if (value.startsWith(prefix)) {
+            if (value.startsWith(prefix) && value.charAt(prefix.length()) == '/') {
                 filteredPathIndex.put(key, value);
             }
         }
