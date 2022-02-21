@@ -144,7 +144,7 @@
         <dependency>
             <groupId>org.webjars.npm</groupId>
             <artifactId>angular-ui-router</artifactId>
-            <version>0.2.15</version>
+            <version>1.0.30</version>
             <scope>test</scope>
         </dependency>
         <dependency>
