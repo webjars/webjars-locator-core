@@ -168,7 +168,7 @@
         <dependency>
             <groupId>org.webjars.npm</groupId>
             <artifactId>babel-core</artifactId>
-            <version>6.0.16</version>
+            <version>6.26.3</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
