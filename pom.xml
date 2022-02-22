@@ -179,7 +179,7 @@
         <dependency>
             <groupId>org.webjars.npm</groupId>
             <artifactId>util</artifactId>
-            <version>0.10.3</version>
+            <version>0.12.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>
