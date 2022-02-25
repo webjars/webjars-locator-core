@@ -45,7 +45,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.outputTimestamp>10</project.build.outputTimestamp>
         <slf4j.version>1.7.36</slf4j.version>
-        <springboot.version>2.6.3</springboot.version>
+        <springboot.version>2.6.4</springboot.version>
     </properties>
 
     <issueManagement>
