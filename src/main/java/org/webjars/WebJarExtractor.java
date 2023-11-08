@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.attribute.PosixFileAttributeView;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.Map;
 import java.util.Scanner;
@@ -143,7 +144,7 @@ public class WebJarExtractor {
                     Files.copy(inputStream, newFile.toPath());
                     inputStream.close();
                     Set<PosixFilePermission> resourcePerms = resource.getPosixFilePermissions();
-                    if (resourcePerms != null) {
+                    if (resourcePerms != null && Files.getFileStore(newFile.toPath()).supportsFileAttributeView(PosixFileAttributeView.class)) {
                         Files.setPosixFilePermissions(newFile.toPath(), resourcePerms);
                     }
                     if (resource.getLastModified() > 0) {
