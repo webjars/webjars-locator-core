@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>webjars-locator-core</artifactId>
-    <version>0.56</version>
+    <version>0.57-SNAPSHOT</version>
     <name>webjars-locator-core</name>
     <description>WebJar Locator Core functionality</description>
     <inceptionYear>2012</inceptionYear>
@@ -29,7 +29,7 @@
         <url>http://github.com/webjars/webjars-locator-core</url>
         <connection>scm:git:https://github.com/webjars/webjars-locator-core.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/webjars-locator-core.git</developerConnection>
-        <tag>webjars-locator-core-0.56</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <developers>
@@ -43,7 +43,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <project.build.outputTimestamp>1709269129</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1709269145</project.build.outputTimestamp>
         <slf4j.version>2.0.9</slf4j.version>
         <springboot.version>2.6.3</springboot.version>
     </properties>
