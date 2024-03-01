@@ -6,6 +6,9 @@ import io.github.classgraph.ClassGraph;
 import io.github.classgraph.Resource;
 import io.github.classgraph.ResourceList;
 import io.github.classgraph.ScanResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.URI;
 import java.util.*;
@@ -21,6 +24,8 @@ import javax.annotation.Nullable;
  * Locate WebJar assets. The class is thread safe.
  */
 public class WebJarAssetLocator {
+
+    private static final Logger Logger = LoggerFactory.getLogger(WebJarAssetLocator.class);
 
     /**
      * The webjar package name.
@@ -212,6 +217,17 @@ public class WebJarAssetLocator {
 
     public WebJarAssetLocator(@Nonnull final Map<String, WebJarInfo> allWebJars) {
         this.allWebJars = allWebJars;
+
+        this.allWebJars.values().stream()
+            .filter(webJarInfo -> {
+                if (webJarInfo.groupId != null)
+                    return webJarInfo.groupId.startsWith("org.webjars.bower");
+                else
+                    return false;
+            })
+            .forEach(webJarInfo ->
+                Logger.warn("Bower WebJars are deprecated. See: https://github.com/webjars/webjars/issues/2039\nOffending WebJar: " + webJarInfo.groupId + ":" + webJarInfo.artifactId)
+            );
     }
 
     /**
