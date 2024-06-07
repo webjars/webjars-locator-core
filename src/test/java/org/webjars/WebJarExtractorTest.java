@@ -64,6 +64,16 @@ public class WebJarExtractorTest {
     }
 
     @Test
+    public void extractWebJarShouldExtractWhenFileExistsAndWebJarVersionIsSnapshot() throws Exception {
+        WebJarExtractor extractor = new WebJarExtractor(createClassLoader());
+        File cacheDir = createTmpDir();
+        File file = new File(cacheDir, "wip/caramba.js");
+        createFile(file, "Hello");
+        extractor.extractWebJarTo("wip", cacheDir);
+        assertFileContains(file, "var just = 'do it';");
+    }
+
+    @Test
     public void extractAllWebJarsShouldExtractWhenFileDoesntExist() throws Exception {
         WebJarExtractor extractor = new WebJarExtractor(createClassLoader());
         extractor.extractAllWebJarsTo(createTmpDir());

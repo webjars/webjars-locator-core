@@ -248,12 +248,13 @@ public class WebJarAssetLocatorTest {
     public void should_get_a_list_of_webjars() {
         Map<String, String> webjars = new WebJarAssetLocator().getWebJars();
 
-        assertThat(webjars.size(), is(38)); // this is the pom.xml ones plus the test resources (spaces, foo, bar-node, multiple)
+        assertThat(webjars.size(), is(39)); // this is the pom.xml ones plus the test resources (spaces, foo, bar-node, multiple)
         assertThat(webjars.get("bootstrap"), is("3.1.1"));
         assertThat(webjars.get("less-node"), is("1.6.0"));
         assertThat(webjars.get("jquery"), is("2.1.0"));
         assertThat(webjars.get("angularjs"), is("1.2.11"));
         assertThat(webjars.get("virtual-keyboard"), is("1.30.1"));
+        assertThat(webjars.get("wip"), is("1.0.0-SNAPSHOT"));
     }
 
     @Test
