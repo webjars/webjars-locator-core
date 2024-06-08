@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.PosixFileAttributeView;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.Map;
@@ -138,10 +139,11 @@ public class WebJarExtractor {
             final String newPath = resource.getPath().substring(prefix.length());
             final String relativeName = String.format("%s%s%s", webJarId, File.separator, newPath);
             final File newFile = new File(to, relativeName);
-            if (!newFile.exists()) {
+            final boolean allowOverwrite = webJarInfo.getVersion() != null && webJarInfo.getVersion().toLowerCase().endsWith("-snapshot");
+            if (!newFile.exists() || allowOverwrite) {
                 try {
                     newFile.getParentFile().mkdirs();
-                    Files.copy(inputStream, newFile.toPath());
+                    Files.copy(inputStream, newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     inputStream.close();
                     Set<PosixFilePermission> resourcePerms = resource.getPosixFilePermissions();
                     if (resourcePerms != null && Files.getFileStore(newFile.toPath()).supportsFileAttributeView(PosixFileAttributeView.class)) {
