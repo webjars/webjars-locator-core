@@ -59,7 +59,7 @@ public class WebJarAssetLocatorTest {
         assertThat(jsPath1, is("META-INF/resources/webjars/angular-translate/2.1.0/angular-translate.js"));
 
         String jsPath2 = locator.getFullPath("require.js");
-        assertThat(jsPath2, is("META-INF/resources/webjars/requirejs/2.3.6/require.js"));
+        assertThat(jsPath2, is("META-INF/resources/webjars/requirejs/2.3.7/require.js"));
     }
 
     @Test
