@@ -30,3 +30,6 @@ local.properties
 
 # PDT-specific
 .buildpath
+
+# Agent Skills extracted by the build
+/.kiro/skills/

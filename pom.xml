@@ -258,6 +258,23 @@
         </resources>
 
         <plugins>
+            <plugin>
+                <groupId>com.skillsjars</groupId>
+                <artifactId>maven-plugin</artifactId>
+                <version>0.0.7</version>
+                <configuration>
+                    <dir>.kiro/skills</dir>
+                </configuration>
+                <dependencies>
+                    <!-- Agent Skills, extracted with ./mvnw -q skillsjars:extract -->
+                    <dependency>
+                        <groupId>com.jamesward</groupId>
+                        <artifactId>skills</artifactId>
+                        <version>0.0.10</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
