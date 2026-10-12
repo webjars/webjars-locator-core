@@ -67,7 +67,7 @@
         <dependency>
             <groupId>io.github.classgraph</groupId>
             <artifactId>classgraph</artifactId>
-            <version>4.8.196</version>
+            <version>4.8.198</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -270,7 +270,7 @@
                     <dependency>
                         <groupId>com.jamesward</groupId>
                         <artifactId>skills</artifactId>
-                        <version>0.0.11</version>
+                        <version>0.0.13</version>
                     </dependency>
                 </dependencies>
             </plugin>
