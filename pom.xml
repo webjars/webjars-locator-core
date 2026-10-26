@@ -261,7 +261,7 @@
             <plugin>
                 <groupId>com.skillsjars</groupId>
                 <artifactId>maven-plugin</artifactId>
-                <version>0.0.7</version>
+                <version>0.0.8</version>
                 <configuration>
                     <dir>.kiro/skills</dir>
                 </configuration>
@@ -270,7 +270,7 @@
                     <dependency>
                         <groupId>com.jamesward</groupId>
                         <artifactId>skills</artifactId>
-                        <version>0.0.17</version>
+                        <version>0.0.18</version>
                     </dependency>
                 </dependencies>
             </plugin>
