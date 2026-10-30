@@ -270,7 +270,7 @@
                     <dependency>
                         <groupId>com.jamesward</groupId>
                         <artifactId>skills</artifactId>
-                        <version>0.0.18</version>
+                        <version>0.0.21</version>
                     </dependency>
                 </dependencies>
             </plugin>
