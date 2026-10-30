@@ -72,7 +72,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.22.3</version>
+            <version>2.22.4</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
@@ -261,7 +261,7 @@
             <plugin>
                 <groupId>com.skillsjars</groupId>
                 <artifactId>maven-plugin</artifactId>
-                <version>0.0.7</version>
+                <version>0.0.8</version>
                 <configuration>
                     <dir>.kiro/skills</dir>
                 </configuration>
@@ -270,7 +270,7 @@
                     <dependency>
                         <groupId>com.jamesward</groupId>
                         <artifactId>skills</artifactId>
-                        <version>0.0.13</version>
+                        <version>0.0.21</version>
                     </dependency>
                 </dependencies>
             </plugin>

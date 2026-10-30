@@ -29,3 +29,4 @@ source/doc tools for API questions. In Claude Code its tools are deferred: load 
 - **Old Java target:** The bytecode target is Java 8 (`maven-compiler-plugin` `<source>`/`<target>` 1.8) and CI builds and tests on Java 8 (Linux and Windows), because existing applications on old JDKs still depend on this library. Don't raise the Java version or the bytecode target in the maintenance routine; label the PR `needs-human` if a dependency update requires it.
 - **Releases:** never run a release or deploy in the maintenance routine.
 - **Mockito stays on 4.x:** Mockito 5 requires Java 11, above the Java 8 baseline; Spring Boot 3+ (Java 17) is likewise held at 2.7.x.
+- **ClassGraph stays on 4.x:** ClassGraph 6.0.0 ships Java 25 bytecode (class file version 69) and removes APIs this library uses (`overrideClasspath`, `overrideClassLoaders`, `Resource.getLastModified`), so it is held at 4.8.x with the Java 8 baseline.
