@@ -270,7 +270,7 @@
                     <dependency>
                         <groupId>com.jamesward</groupId>
                         <artifactId>skills</artifactId>
-                        <version>0.0.24</version>
+                        <version>0.0.27</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -319,7 +319,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>animal-sniffer-maven-plugin</artifactId>
-                <version>1.29</version>
+                <version>1.29.1</version>
                 <configuration>
                     <checkTestClasses>true</checkTestClasses>
                     <signature>
